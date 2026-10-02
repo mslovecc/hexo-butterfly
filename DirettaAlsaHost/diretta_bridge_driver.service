@@ -1,0 +1,14 @@
+[Unit]
+Description = Diretta Alsa Bridge Driver
+After=local-fs.target
+ConditionPathExists=/home/user/master/diretta/sync/salsa
+
+[Service]
+ExecStartPre=modprobe snd_pcm
+ExecStart=insmod /home/user/master/diretta/sync/salsa/alsa_bridge.ko
+Restart=no
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
+

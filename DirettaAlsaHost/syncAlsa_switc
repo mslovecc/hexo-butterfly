@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+PATH_OWN=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
+debug=`tr -d "\r" < $PATH_OWN/syncalsa_setting.inf  | grep Debug= | cut -d= -f 2 | cut -d '_' -f 1`
+
+if [ "$debug" == "nolog" ]; then
+	if [ -e $PATH_OWN/syncAlsa_nolog ]; then
+		exec $PATH_OWN/syncAlsa_nolog $@
+	else
+		exec $PATH_OWN/syncAlsa $@
+	fi
+else
+	exec $PATH_OWN/syncAlsa $@
+fi
+

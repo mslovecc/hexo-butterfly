@@ -1,0 +1,15 @@
+[Unit]
+Description = Diretta Alsa Host
+After=network-online.target
+ConditionPathExists=/home/user/master/diretta/sync/salsa
+
+[Service]
+ExecStart=/home/user/master/diretta/sync/salsa/syncAlsa_switc
+ExecStop=/home/user/master/diretta/sync/salsa/syncAlsa_switc kill
+After=audirvanaStudio.service
+Restart=always
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
+
